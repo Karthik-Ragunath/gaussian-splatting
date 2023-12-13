@@ -1,0 +1,17 @@
+conda env create -n gaussian_splatting_env python=3.10
+pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
+pip install tqdm
+pip install plyfile
+pip install ninja
+cd ~/anaconda3/envs/gaussian_splatting_env/lib/
+mv libstdc++.so.6 libstdc++.so.6.old
+mv libstdc++.so libstdc++.so.old
+ln -s libstdc++.so.6.0.32 libstdc++.so.6
+ln -s libstdc++.so.6.0.32 libstdc++.so
+strings libstdc++.so.6 | grep GLIBCXX
+(gaussian_splatting_env) [kxa200005@pdml5 submodules]$ export CONDA_PREFIX="/opt/cuda"
+(gaussian_splatting_env) [kxa200005@pdml5 submodules]$ export PATH="/opt/cuda/bin/:$PATH"
+(gaussian_splatting_env) [kxa200005@pdml5 submodules]$ export LD_LIBRARY_PATH="/opt/cuda/lib64"
+cd ~/github/gaussian_splatting/submodules
+pip install -e diff-gaussian-rasterization
+pip install -e simple-knn
